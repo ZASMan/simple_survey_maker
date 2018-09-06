@@ -64,3 +64,4 @@ gem 'delayed_job_active_record'
 gem 'rack-timeout', group: :production
 
 gem 'clearance'
+gem 'antivirus'

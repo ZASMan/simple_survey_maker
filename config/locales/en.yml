@@ -17,3 +17,13 @@ en:
 
   titles:
     application: Simple survey maker
+
+  antivirus:
+    message: includes profane words.
+    profane_words:
+      - asshole
+      - bitch
+      - cunt
+      - faggot
+      - nigger
+      - cocksucker
