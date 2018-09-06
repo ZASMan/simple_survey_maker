@@ -1,4 +1,4 @@
 class Answer < ApplicationRecord
   belongs_to :question
-  validates :body, profanity_filter: true
+  validates :body, presence: true, length: { maximum: 2000 }
 end
