@@ -24,7 +24,12 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      redirect_to @answer, notice: 'Answer was successfully created.'
+      notice_message = 'Your response was succesfully saved.' +
+      ' If it meets community guidelines, it will be posted soon.'
+      redirect_to(
+        question_path(@answer.question),
+        notice: notice_message
+      )
     else
       render :new
     end
