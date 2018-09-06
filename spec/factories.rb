@@ -1,4 +1,8 @@
 FactoryBot.define do
+  factory :answer do
+    body "MyText"
+    question nil
+  end
   factory :question do
     title "MyString"
     description "MyText"
