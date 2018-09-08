@@ -30,18 +30,27 @@ class AnswersController < ApplicationController
       redirect_to(
         question_path(@answer.question),
         notice: notice_message
-      )
+      ) and return
     else
-      render :new
+      redirect_to(
+        question_path(@answer.question),
+        notice: "Your answer cannot be saved. #{@answer.errors.messages}"
+      ) and return
     end
   end
 
   # PATCH/PUT /answers/1
   def update
     if @answer.update(answer_params)
-      redirect_to @answer, notice: 'Answer was successfully updated.'
+      redirect_to(
+        question_path(@answer.question),
+        notice: "Successfully updated answer."
+      ) and return
     else
-      render :edit
+      redirect_to(
+        question_path(@answer.question),
+        notice: "Unable to update answer."
+      ) and return
     end
   end
 
@@ -59,6 +68,6 @@ class AnswersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def answer_params
-      params.require(:answer).permit(:body, :question_id)
+      params.require(:answer).permit(:body, :question_id, :status)
     end
 end
