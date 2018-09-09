@@ -15,6 +15,10 @@ class Answer < ApplicationRecord
   	end
   end
 
+  def preview_body_if_long
+    body.length > 50 ? body[0, 50] : body
+  end
+
   def evaluate_body_content
   	# Evaluate content here
   end

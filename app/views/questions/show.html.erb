@@ -42,8 +42,8 @@
       <% @question.answers.each do |question_answer| %>
         <tr>
           <td>
-            <% stat = question_answer.display_status %>
-            <%= stat.length > 50 ? status[0, 50] : stat %>
+            <%= question_answer.status %>
+            <%= question_answer.preview_body_if_long %>
             <%= link_to '(Show)', question_answer %>    
           </td>
           <td>
