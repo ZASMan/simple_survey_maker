@@ -9,8 +9,8 @@ if [ -z "$1" ]; then
   exit 64
 fi
 
-PARENT_APP_NAME=simple-survey-maker-staging
-APP_NAME=simple-survey-maker-staging-pr-$1
+PARENT_APP_NAME=simple-survey-maker-app-staging
+APP_NAME=simple-survey-maker-app-staging-pr-$1
 
 heroku pg:backups:capture --app $PARENT_APP_NAME
 

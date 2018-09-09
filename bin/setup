@@ -23,3 +23,25 @@ fi
 # Only if this isn't CI
 # if [ -z "$CI" ]; then
 # fi
+
+if heroku join --app simple-survey-maker-app-staging > /dev/null 2>&1; then
+  git remote add staging git@heroku.com:simple-survey-maker-app-staging.git || true
+  printf 'You are a collaborator on the "simple-survey-maker-app-staging" Heroku app
+'
+else
+  printf 'Ask for access to the "simple-survey-maker-app-staging" Heroku app
+'
+fi
+
+
+if heroku join --app simple-survey-maker-app-production > /dev/null 2>&1; then
+  git remote add production git@heroku.com:simple-survey-maker-app-production.git || true
+  printf 'You are a collaborator on the "simple-survey-maker-app-production" Heroku app
+'
+else
+  printf 'Ask for access to the "simple-survey-maker-app-production" Heroku app
+'
+fi
+
+
+git config heroku.remote staging

@@ -1,0 +1,24 @@
+<% if question_answer.status == "flagged" %>
+  <%= simple_form_for(question_answer) do |f| %>
+
+    <%= f.hidden_field :question_id, value: question_answer.question.id %>
+    <%= f.hidden_field :status, value: "" %>
+    <%= f.hidden_field :body, value: question_answer.body %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Unflag" %>
+    </div>
+  <% end %>
+
+<% elsif question_answer.status.blank? %>
+  <%= simple_form_for(question_answer) do |f| %>
+
+    <%= f.hidden_field :question_id, value: question_answer.question.id %>
+    <%= f.hidden_field :status, value: "flagged" %>
+    <%= f.hidden_field :body, value: question_answer.body %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Flag" %>
+    </div>
+  <% end %>
+<% end %>

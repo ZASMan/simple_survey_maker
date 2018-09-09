@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: simple_survey_maker_development
+  database: simple_survey_maker_app_development
   encoding: utf8
   min_messages: warning
   pool: <%= Integer(ENV.fetch("DB_POOL", 5)) %>
@@ -9,7 +9,7 @@ development: &default
 
 test:
   <<: *default
-  database: simple_survey_maker_test
+  database: simple_survey_maker_app_test
 
 production: &deploy
   encoding: utf8

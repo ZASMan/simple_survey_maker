@@ -1,6 +1,4 @@
-# Simple survey maker
-
-I'm creating this project as sort of an alternative to Google forms to meet my personal needs, and allow more accountability for the moderators/people that read the form and filtering of content.
+# Simple survey maker app
 
 ## Getting Started
 
