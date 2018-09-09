@@ -22,10 +22,9 @@ Rails.application.configure do
   end
   config.active_record.dump_schema_after_migration = false
   
-  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
-    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-  end
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+  ENV["APPLICATION_HOST"] = 'simplesurveymaker.herokuapp.com'
+
+  config.middleware.use Rack::CanonicalHost, ENV["APPLICATION_HOST"]
   config.middleware.use Rack::Deflater
   config.public_file_server.headers = {
     "Cache-Control" => "public, max-age=31557600",
