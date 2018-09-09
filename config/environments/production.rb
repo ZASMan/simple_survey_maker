@@ -30,6 +30,6 @@ Rails.application.configure do
     "Cache-Control" => "public, max-age=31557600",
   }
   config.action_mailer.default_url_options = { host: ENV["APPLICATION_HOST"] }
-  config.action_mailer.asset_host = ENV["APPLICATION_HOST"])
+  config.action_mailer.asset_host = ENV["APPLICATION_HOST"]
   config.force_ssl = true
 end
