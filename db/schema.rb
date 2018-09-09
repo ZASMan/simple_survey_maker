@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2018_09_08_031454) do
     t.bigint "question_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "flagged"
     t.string "status"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
