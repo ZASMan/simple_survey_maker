@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Filter list:</strong>
+  <%= @content_filter.filter_list %>
+</p>
+
+<%= link_to 'Edit', edit_content_filter_path(@content_filter) %> |
+<%= link_to 'Back', content_filters_path %>

@@ -1,4 +1,7 @@
 FactoryBot.define do
+  factory :content_filter do
+    filter_list { "MyText" }
+  end
   factory :comment do
     
   end

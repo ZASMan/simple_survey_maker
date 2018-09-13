@@ -1,0 +1,2 @@
+class ContentFilter < ApplicationRecord
+end

@@ -2,6 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_many :comments, as: :commentable 
   validates :body, length: { maximum: 2000 }
+  validates_presence_of :body
 
   ANSWER_STATUSES = %w[flagged posted]
 
