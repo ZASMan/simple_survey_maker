@@ -22,6 +22,7 @@ module SimpleSurveyMakerApp
       generate.test_framework :rspec
       generate.view_specs false
     end
+    config.action_controller.include_all_helpers = true
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.load_defaults 5.2
     config.generators.system_tests = nil
