@@ -44,14 +44,14 @@
           <td>
             <%= question_answer.status %>
             <%= question_answer.preview_body_if_long %>
-            <%= link_to '(Show)', question_answer %>    
+            <%= link_to '(Show)', question_answer, target: "_blank" %>    
           </td>
           <td>
             <%= question_answer.created_at %>    
           </td>
           <td>
             <%= render partial: "questions/flag_unflag_button",
-              locals: { question_answer: question_answer } %>
+              locals: { answer: question_answer } %>
             <% render "add_note_button"  %>
           </td>
         </tr>

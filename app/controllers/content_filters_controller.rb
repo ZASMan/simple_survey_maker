@@ -1,4 +1,5 @@
 class ContentFiltersController < ApplicationController
+  before_action :require_login
   before_action :set_content_filter, only: [:show, :edit, :update, :destroy]
 
   # GET /content_filters

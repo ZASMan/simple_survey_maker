@@ -1,24 +1,27 @@
-<% if question_answer.status == "flagged" %>
-  <%= simple_form_for(question_answer) do |f| %>
+<% if answer.flagged? %>
+  <%= simple_form_for(answer) do |f| %>
 
-    <%= f.hidden_field :question_id, value: question_answer.question.id %>
+    <%= f.hidden_field :question_id, value: answer.question.id %>
     <%= f.hidden_field :status, value: "" %>
-    <%= f.hidden_field :body, value: question_answer.body %>
+    <%= f.hidden_field :body, value: answer.body %>
 
     <div class="form-actions">
-      <%= f.button :submit, "Unflag" %>
+      <%= f.button :submit, "Unflag", class: "btn btn-warning" %>
     </div>
   <% end %>
 
-<% elsif question_answer.status.blank? %>
-  <%= simple_form_for(question_answer) do |f| %>
+<% elsif answer.posted? %>
+  Answer Posted.
+<% else %>
 
-    <%= f.hidden_field :question_id, value: question_answer.question.id %>
+  <%= simple_form_for(answer) do |f| %>
+
+    <%= f.hidden_field :question_id, value: answer.question.id %>
     <%= f.hidden_field :status, value: "flagged" %>
-    <%= f.hidden_field :body, value: question_answer.body %>
+    <%= f.hidden_field :body, value: answer.body %>
 
     <div class="form-actions">
-      <%= f.button :submit, "Flag" %>
+      <%= f.button :submit, "Flag", class: "btn btn-danger" %>
     </div>
   <% end %>
 <% end %>

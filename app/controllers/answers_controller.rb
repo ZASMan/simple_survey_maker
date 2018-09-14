@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  # New/Create are accessible by unauthenticated user
   before_action :require_login, only: [:show, :index, :edit, :update, :destroy]
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
@@ -25,10 +26,15 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     if @answer.save
+      if signed_in?
+        redirect_path = answers_path
+      else
+        redirect_path = question_path(@answer.question)
+      end
       notice_message = 'Your response was succesfully saved.' +
       ' If it meets community guidelines, it will be posted soon.'
       redirect_to(
-        question_path(@answer.question),
+        redirect_path,
         notice: notice_message
       ) and return
     else
@@ -43,12 +49,12 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_params)
       redirect_to(
-        question_path(@answer.question),
+        answer_path(@answer),
         notice: "Successfully updated answer."
       ) and return
     else
       redirect_to(
-        question_path(@answer.question),
+        question_path(@answer),
         notice: "Unable to update answer."
       ) and return
     end

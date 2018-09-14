@@ -1,0 +1,13 @@
+<% unless answer.posted? %>
+  <%= simple_form_for(answer) do |f| %>
+
+    <%= f.hidden_field :question_id, value: answer.question.id %>
+    <%= f.hidden_field :status, value: "posted" %>
+    <%= f.hidden_field :body, value: answer.body %>
+
+    <div class="form-actions">
+      <%= f.button :submit, "Unflag", class: "btn btn-warning" %>
+    </div>
+  <% end %>
+
+<% end %>

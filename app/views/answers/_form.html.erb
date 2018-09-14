@@ -4,6 +4,7 @@
 
   <div class="form-inputs">
     <%= f.input :body %>
+    <%= f.input :status, collection: Answer::ANSWER_STATUSES %>
     <%= f.association :question %>
   </div>
 

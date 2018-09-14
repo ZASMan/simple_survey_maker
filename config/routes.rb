@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :content_filters
-  root "surveys#index"
+  root "answers#index"
   resources :answers
   resources :questions
   resources :surveys
