@@ -9,3 +9,5 @@ question_1 = Question.create!(
   Please do not submit abusive or bullying content.",
   survey: polyglot_confessions_survey
 )
+
+filter = ContentFilter.create!
