@@ -8,34 +8,25 @@
         <th>Status</th>
         <th>Body</th>
         <th>Created At</th>
-        <th>Question</th>
-        <th colspan="3">Actions</th>
+        <th>Actions</th>
       </tr>
     </thead>
 
     <tbody>
       <% @answers.each do |answer| %>
         <tr>
-          <td>
+          <td class="<%= answer.display_status_class %> capitalize font-weight-bold text-center">
             <%= answer.status %>
           </td>
           <td>
             <%= answer.preview_body_if_long %>
-            <%= link_to answer.show_link_message, answer %>    
+            <%= link_to answer.show_link_message, edit_answer_path(answer) %>    
           </td>
           <td>
             <%= answer.created_at %>    
           </td>
           <td>
-            <%= link_to "View Question", question_path(answer.question), target: "_blank", class: "btn btn-info" %>
-          </td>
-          <td>
-            <%= link_to "Edit (Flag, Mark as Posted, Etc.)", edit_answer_path(answer), class: "btn btn-success" %>
-            <% render partial: "questions/flag_unflag_button",
-              locals: { answer: answer } %>
-            <% render partial: "questions/mark_as_posted_button",
-              locals: { answer: answer } %>
-            <% render partial: "questions/add_note_button"  %>
+            <%= link_to "View/Edit", edit_answer_path(answer), class: "btn btn-success" %>
           </td>
         </tr>
       <% end %>

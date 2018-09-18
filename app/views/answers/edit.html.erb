@@ -1,6 +1,19 @@
-<h1>Editing Answer</h1>
+<h1>View/Edit Answer</h1>
 
 <%= render 'form', answer: @answer %>
 
+<br>
+<div class="card">
+  <div class="card-header">
+  	<%= @answer.date_index %>
+  </div>
+  <div class="card-body">
+  	<p class="card-text"> 
+  	  <%= @answer.body %>
+  	</p>
+  </div>
+  </div>
+</div>
+<br>
 <%= link_to 'Show', @answer %> |
 <%= link_to 'Back', answers_path %>

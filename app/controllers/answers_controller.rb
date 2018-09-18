@@ -49,12 +49,12 @@ class AnswersController < ApplicationController
   def update
     if @answer.update(answer_params)
       redirect_to(
-        answer_path(@answer),
+        answers_path,
         notice: "Successfully updated answer."
       ) and return
     else
       redirect_to(
-        question_path(@answer),
+        edit_answer_path(@answer),
         notice: "Unable to update answer."
       ) and return
     end

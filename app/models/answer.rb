@@ -7,6 +7,17 @@ class Answer < ApplicationRecord
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
   CONTENT_FILTER = ContentFilter.first
 
+  def display_status_class
+    return "text-success" if posted?
+    return "text-warning" if flagged?
+    return "text-info"
+  end
+
+  def date_index
+    "Anonymous Confession " +
+    created_at.strftime("%m/%y") + " #" + id.to_s
+  end
+
   def display_status
   	if flagged?
   	  return "Confession Flagged."
