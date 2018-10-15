@@ -76,16 +76,17 @@ class AnswersController < ApplicationController
           flash[:notice] = "Flagged answers are only viewable by super admins"
           redirect_to root_url
         end
+      end
     end
   end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_answer
-      @answer = Answer.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_answer
+    @answer = Answer.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def answer_params
-      params.require(:answer).permit(:body, :question_id, :status)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def answer_params
+    params.require(:answer).permit(:body, :question_id, :status)
+  end
 end
