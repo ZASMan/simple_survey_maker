@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   # New/Create are accessible by unauthenticated user
-  before_action :redirect_if_flagged_unless_god, only: [:edit, :show]
+  #before_action :redirect_if_flagged_unless_god, only: [:edit, :show]
   before_action :require_login, only: [:show, :index, :edit, :update, :destroy]
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
@@ -11,6 +11,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/1
   def show
+    redirect_if_flagged_unless_god
   end
 
   # GET /answers/new
@@ -20,6 +21,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/1/edit
   def edit
+    redirect_if_flagged_unless_god
   end
 
   # POST /answers
