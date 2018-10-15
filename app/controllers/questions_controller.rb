@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :require_login, only: [:new, :create, :index, :edit, :update, :destroy]
-  before_action :redirect_if_auto_flagged_unless_is_god
+  before_action :redirect_if_auto_flagged_unless_is_god, only: [:edit, :show]
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   # GET /questions
