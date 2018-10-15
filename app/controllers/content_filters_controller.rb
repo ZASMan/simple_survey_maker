@@ -1,5 +1,6 @@
 class ContentFiltersController < ApplicationController
   before_action :require_login
+  before_action :redirect_unless_god_admin
   before_action :set_content_filter, only: [:show, :edit, :update, :destroy]
 
   # GET /content_filters
@@ -47,6 +48,15 @@ class ContentFiltersController < ApplicationController
   end
 
   private
+  
+  def redirect_unless_god_admin
+    if signed_in?
+      unless current_user.god == true
+        flash[:notice] = "This page is only viewable to super admins."
+        redirect_to root_url
+      end
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_content_filter
       @content_filter = ContentFilter.find(params[:id])
