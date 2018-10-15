@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   # New/Create are accessible by unauthenticated user
+  before_action :redirect_if_flagged_unless_god, only: [:edit, :show]
   before_action :require_login, only: [:show, :index, :edit, :update, :destroy]
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
@@ -67,6 +68,17 @@ class AnswersController < ApplicationController
   end
 
   private
+  
+  def redirect_if_flagged_unless_god
+    if signed_in?
+      if @answer.flagged?
+        unless current_user.god == true
+          flash[:notice] = "Flagged answers are only viewable by super admins"
+          redirect_to root_url
+        end
+    end
+  end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_answer
       @answer = Answer.find(params[:id])
