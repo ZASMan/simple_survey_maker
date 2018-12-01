@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
 
   # GET /answers
   def index
-    @answers = Answer.all
+    @answers = Answer.all.order(created_at: :desc)
   end
 
   # GET /answers/1
