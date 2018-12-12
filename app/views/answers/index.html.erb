@@ -7,7 +7,7 @@
       <tr>
         <th>Status</th>
         <th>Body</th>
-        <th>Created At</th>
+        <th>Created At/ID</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -23,7 +23,7 @@
             <%= link_to answer.show_link_message, edit_answer_path(answer) %>    
           </td>
           <td>
-            <%= answer.created_at %>    
+            <%= answer.created_at.to_s + "|" + answer.id.to_s %>    
           </td>
           <td>
             <%= link_to "View/Edit", edit_answer_path(answer), class: "btn btn-success" %> |
