@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   after_create :evaluate_body_content
   belongs_to :question
   has_many :comments, as: :commentable 
-  validates :body, presence: true, length: { maximum: 2000 }
+  validates :body, presence: true, uniqueness: { message: "Unable to create answer." }, length: { maximum: 2000 }
 
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
   CONTENT_FILTER = ContentFilter.first
