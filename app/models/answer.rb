@@ -2,7 +2,7 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_many :comments, as: :commentable 
   validates :body, presence: true, uniqueness: true, length: { maximum: 2000 }
-  validate :contains_profanity?
+  validate :contains_profanity
 
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
   CONTENT_FILTER = ContentFilter.first
@@ -63,7 +63,7 @@ class Answer < ApplicationRecord
   
   private
 
-  def contains_profanity?
+  def contains_profanity
   	# Evaluate content here
     body_by_words.each do |word|
       if CONTENT_FILTER.filter_list.include?(word)
