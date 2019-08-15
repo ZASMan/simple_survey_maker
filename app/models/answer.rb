@@ -1,11 +1,11 @@
 class Answer < ApplicationRecord
-  after_create :evaluate_body_content
   belongs_to :question
   has_many :comments, as: :commentable 
   validates :body, presence: true, uniqueness: true, length: { maximum: 2000 }
+  validate :contains_profanity?
 
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
-  CONTENT_FILTER = ContentFilter.first
+  CONTENT_FILTER = ContentFilter.all[0]
 
   def display_status_class
     return "text-success" if posted?
@@ -61,15 +61,12 @@ class Answer < ApplicationRecord
     body.split(" ")
   end
 
-  def evaluate_body_content
+  def contains_profanity?
   	# Evaluate content here
     body_by_words.each do |word|
       if CONTENT_FILTER.present? && CONTENT_FILTER.filter_list.present?
         if CONTENT_FILTER.filter_list.include?(word)
-          update_attribute(:status, "auto_flagged")
-          return
-        else
-          update_attribute(:status, "safe")
+          errors.add(:body, "Wash your mouth out with soap, heathen!")
         end
       end
     end
