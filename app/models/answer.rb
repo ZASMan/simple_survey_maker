@@ -5,7 +5,7 @@ class Answer < ApplicationRecord
   validate :contains_profanity?
 
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
-  CONTENT_FILTER = ContentFilter.all[0]
+  CONTENT_FILTER = ContentFilter.first
 
   def display_status_class
     return "text-success" if posted?
@@ -60,14 +60,14 @@ class Answer < ApplicationRecord
   def body_by_words
     body.split(" ")
   end
+  
+  private
 
   def contains_profanity?
   	# Evaluate content here
     body_by_words.each do |word|
-      if CONTENT_FILTER.present? && CONTENT_FILTER.filter_list.present?
-        if CONTENT_FILTER.filter_list.include?(word)
-          errors.add(:body, "Wash your mouth out with soap, heathen!")
-        end
+      if CONTENT_FILTER.filter_list.include?(word)
+        errors.add(:body, "Wash your mouth out with soap, heathen!")
       end
     end
   end
