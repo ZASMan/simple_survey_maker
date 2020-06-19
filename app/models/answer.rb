@@ -66,7 +66,7 @@ class Answer < ApplicationRecord
   def contains_profanity
   	# Evaluate content here
     body_by_words.each do |word|
-      if CONTENT_FILTER.filter_list.include?(word)
+      if CONTENT_FILTER.filter_list.include?(word.downcase)
         errors.add(:body, "Wash your mouth out with soap, heathen!")
       end
     end
