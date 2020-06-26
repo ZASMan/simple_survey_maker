@@ -27,15 +27,15 @@ class AnswersController < ApplicationController
   # POST /answers
   def create
     @answer = Answer.new(answer_params)
-
+    notice_message = 'Your response was succesfully saved.' +
+    ' If it meets community guidelines, it will be posted soon.'
     if @answer.save
       if signed_in?
         redirect_path = answers_path
       else
         redirect_path = question_path(@answer.question)
       end
-      notice_message = 'Your response was succesfully saved.' +
-      ' If it meets community guidelines, it will be posted soon.'
+
       redirect_to(
         redirect_path,
         notice: notice_message
@@ -43,7 +43,7 @@ class AnswersController < ApplicationController
     else
       redirect_to(
         question_path(@answer.question),
-        notice: "Your answer cannot be saved. #{@answer.errors.messages}"
+        notice: notice_message
       ) and return
     end
   end
