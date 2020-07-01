@@ -67,8 +67,10 @@ class Answer < ApplicationRecord
   	# Evaluate content here
     body_by_words.each do |word|
       downcased_filter_words = CONTENT_FILTER.filter_list.map { |word| word.downcase }
-      if downcased_filter_words.match?(word.downcase)
-        errors.add(:body, "Thank you for your submission! We will review and post shortly.")
+      downcased_filter_words.each do |filtered_word|
+        if filtered_word.match?(word.downcase)
+          errors.add(:body, "Thank you for your submission! We will review and post shortly.")
+        end
       end
     end
   end
