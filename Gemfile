@@ -7,6 +7,7 @@ end
 
 ruby "2.5.1"
 
+gem 'obscenity'
 gem "autoprefixer-rails"
 gem "flutie"
 gem "honeybadger"
