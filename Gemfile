@@ -65,4 +65,4 @@ gem 'delayed_job_active_record'
 gem 'rack-timeout', group: :production
 
 gem 'clearance'
-gem 'bootstrap', '~> 4.1.3'
+gem 'bootstrap', '~> 4.3.1'
