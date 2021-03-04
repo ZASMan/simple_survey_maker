@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "2.5.1"
+ruby "2.6.5"
 
 gem 'obscenity'
 gem "autoprefixer-rails"
@@ -65,4 +65,4 @@ gem 'delayed_job_active_record'
 gem 'rack-timeout', group: :production
 
 gem 'clearance'
-gem 'bootstrap', '~> 4.1.3'
+gem "bootstrap", ">= 4.3.1"
