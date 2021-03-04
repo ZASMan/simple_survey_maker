@@ -2,7 +2,8 @@ class Answer < ApplicationRecord
   belongs_to :question
   has_many :comments, as: :commentable 
   validates :body, presence: true, uniqueness: true, length: { maximum: 2000 }
-  validate :contains_profanity
+  # TODO: This needs to be reworked
+  # validate :contains_profanity
 
   ANSWER_STATUSES = %w[flagged posted auto_flagged]
   CONTENT_FILTER = ContentFilter.first
@@ -62,7 +63,9 @@ class Answer < ApplicationRecord
   end
   
   private
-
+  
+  # TODO: This needs to be reworked. Relying on a content_filter model with an array attribute is kind of bad
+  # maybe we could make a model called censored_words or something?
   def contains_profanity
   	# Evaluate content here
     body_by_words.each do |word|
